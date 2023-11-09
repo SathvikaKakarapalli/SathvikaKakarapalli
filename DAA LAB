@@ -1,0 +1,790 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+y=[1,1,0,0,2,2,0,0,1,0,2,0,1]
+for i in range(len(y)):
+    for j in range(0,(len(y))-i-1):
+        if y[j]>y[j+1]:
+            y[j],y[j+1]=y[j+1],y[j]
+print(y)
+
+
+# In[2]:
+
+
+i = "i am fine"
+words = i.split()
+cap_words = [word.capitalize() for word in words]
+cap_string = ' '.join(cap_words)
+print(cap_string)
+
+
+# In[3]:
+
+
+def is_balanced(c):
+    stack = []
+    for char in c:
+        if char in '([{':
+            stack.append(char)
+        elif char in ')]}':
+            if not stack:
+                return False 
+            top = stack.pop()
+            if (char == ')' and top != '(') or (char == ']' and top != '[') or (char == '}' and top != '{'):
+                return False  
+        return len(stack) == 0  
+
+c = input("Enter an expression: ")
+if is_balanced(c):
+    print("Given string is balanced.")
+else:
+    print("Given string is not balanced.")
+
+
+# In[4]:
+
+
+class ListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, value):
+        new_node = ListNode(value)
+        if not self.head:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+
+    def has_cycle(self):
+        if not self.head:
+            return False
+
+        x = self.head
+        x2 = self.head
+
+        while x and x.next:
+            x= x.next
+            x2 = x2.next.next
+
+            if x == x2:
+                return True
+
+        return False
+
+# Example usage
+if __name__ == "__main__":
+    linked_list = LinkedList()
+    linked_list.append(1)
+    linked_list.append(2)
+    linked_list.append(3)
+    linked_list.append(4)
+    linked_list.append(5)
+    linked_list.append(11)
+    linked_list.append(12)
+    linked_list.append(13)
+    linked_list.append(14)
+    linked_list.append(15)
+    # Uncomment the following line to create a circular linked list:
+    # linked_list.head.next.next.next.next.next = linked_list.head
+
+    has_cycle = linked_list.has_cycle()
+    if has_cycle:
+        print("The linked list has a cycle.")
+    else:
+        print("The linked list does not have a cycle.")
+
+
+# In[5]:
+
+
+class ListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, value):
+        new_node = ListNode(value)
+        if not self.head:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+def has_cycle(self):
+        if not self.head:
+            return False
+
+        x = self.head
+        x2 = self.head
+
+        while x and x.next:
+            x= x.next
+            x2 = x2.next.next.next
+
+            if x == x2:
+                return True
+
+        return False
+
+
+# In[6]:
+
+
+def removeDuplicates(arr, n):
+    if n == 0 or n == 1:
+        return n
+    temp = list(range(n))
+    j = 0
+    for i in range(0, n-1):
+        if arr[i] != arr[i+1]:
+            temp[j] = arr[i]
+            j += 1
+    temp[j] = arr[n-1]
+    j += 1
+    for i in range(0, j):
+        arr[i] = temp[i]
+    return j
+# Driver code
+if __name__ == '__main__':
+    arr = [1, 2, 2, 3, 4, 4, 4, 5, 5]
+    n = len(arr)
+    n = removeDuplicates(arr, n)
+    for i in range(n):
+        print("%d" % (arr[i]), end=" ")
+ 
+
+
+# In[7]:
+
+
+def isPalindrome(str):
+    for i in range(0, int(len(str)/2)):
+        if str[i] != str[len(str)-i-1]:
+            return False
+    return True
+
+s = "mam"
+ans = isPalindrome(s)
+ 
+if (ans):
+    print("Yes")
+else:
+    print("No")
+
+
+# In[8]:
+
+
+from itertools import permutations
+ 
+def allPermutations(str):
+    permList = permutations(str)
+    for perm in list(permList):
+        print (''.join(perm))
+if __name__ == "__main__":
+    str = 'ABC'
+    allPermutations(str)
+
+
+# In[9]:
+
+
+def partition(array, low, high):
+	pivot = array[high]
+	i = low - 1
+	for j in range(low, high):
+		if array[j] <= pivot:
+			i = i + 1
+			(array[i], array[j]) = (array[j], array[i])
+
+	(array[i + 1], array[high]) = (array[high], array[i + 1])
+	return i + 1
+def quickSort(array, low, high):
+	if low < high:
+		pi = partition(array, low, high)
+		quickSort(array, low, pi - 1)
+		quickSort(array, pi + 1, high)
+data = [1, 7, 4, 1, 10, 9, -2]
+print("Unsorted Array")
+print(data)
+size = len(data)
+quickSort(data, 0, size - 1)
+print('Sorted Array in Ascending Order:')
+print(data)   
+
+
+# In[10]:
+
+
+array_2d = [
+    [1, 3, 2],
+    [9, 4, 12],
+    [6, 8, 18]
+]
+l=1
+for row in array_2d:
+    for num in row:
+        if num%3==0:
+            l=l*num
+        
+if l > 50:
+        print(l)
+
+
+# In[11]:
+
+
+import numpy as np
+
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
+
+result_matrix = np.dot(matrix, matrix)
+
+is_idempotent = np.array_equal(result_matrix, matrix)
+
+if is_idempotent:
+    print("The matrix is idempotent.")
+else:
+    print("The matrix is not idempotent.")
+
+
+# In[12]:
+
+
+matrix = [[2, -2, 4],
+          [-1, 3, 4],
+          [1, -2, -3]]
+result_matrix = [[0, 0, 0],
+                 [0, 0, 0],
+                 [0, 0, 0]]
+
+for i in range(3):
+    for j in range(3):
+        for k in range(3):
+            result_matrix[i][j] += matrix[i][k] * matrix[k][j]
+print(result_matrix)
+for i in range(3):
+    for j in range(3):       
+            if result_matrix[i][j] != matrix[i][j]:
+                is_idempotent = False
+            break
+if is_idempotent:
+    print("no")
+else:
+    print("yes")
+                   
+           
+
+
+# In[13]:
+
+
+matrix = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+for i in range (3):
+    for j in range(3):
+        matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
+print(matrix)
+
+
+# In[14]:
+
+
+matrix = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+
+rotated_matrix = [[0, 0, 0],
+                  [0, 0, 0],
+                  [0, 0, 0]]
+
+for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+        rotated_matrix[i][j] = matrix[j][~i]
+
+for row in rotated_matrix:
+    print(row)
+
+
+# In[15]:
+
+
+def min_total_curse(N, D, data):
+    # Initialize a 2D DP array with large values
+    dp = [[float('inf')] * (D+1) for _ in range(N+1)]
+
+    # Base case: no curses on the first day
+    dp[0][0] = 0
+
+    # Iterate through days and curses
+    for i in range(1, N+1):
+        for j in range(1, D+1):
+            for k in range(i):
+                # Try to minimize the curse on day i
+                dp[i][j] = min(dp[i][j], dp[k][j-1] + data[i-1][2])
+
+    # Find the minimum total curse achievable
+    min_curse = min(dp[N])
+    return min_curse
+
+# Input
+N, D = map(int, input().split())
+data = []
+for _ in range(N):
+    Di, Ti, Si = map(int, input().split())
+    data.append((Di, Ti, Si))
+
+# Calculate and print the result
+result = min_total_curse(N, D, data)
+print(result)
+
+
+# In[16]:
+
+
+import heapq
+
+def minimize_curse(N, D, teachers):
+    # Sort teachers by arrival day
+    teachers.sort(key=lambda x: x[0])
+    
+    # Initialize variables
+    curse_level = 0
+    available_teachers = []
+    
+    # Iterate through the days
+    for day in range(1, D+1):
+        # Add arriving teachers to available_teachers
+        while teachers and teachers[0][0] == day:
+            _, Ti, Si = teachers.pop(0)
+            heapq.heappush(available_teachers, (-Si, Ti))  # Use negative Si to get max Si when popping
+    
+        # Schedule a lecture if available
+        if available_teachers:
+            Si, Ti = heapq.heappop(available_teachers)
+            Ti += 1
+            if Ti > 0:
+                heapq.heappush(available_teachers, (Si, Ti))
+        else:
+            # If no teacher with lectures available, increase curse_level
+            curse_level += 1
+    
+    # Calculate the minimum curse level
+    return curse_level
+
+# Input
+N, D = map(int, input().split())
+teachers = []
+for _ in range(N):
+    Di, Ti, Si = map(int, input().split())
+    teachers.append((Di, Ti, Si))
+
+# Calculate and print the result
+result = minimize_curse(N, D, teachers)
+print(result)
+
+
+# In[17]:
+
+
+a=[8,9,16,1]
+for i in range(len(a)):
+    for j in range(1,len(a)):
+        if a[i]>a[j] and i<j:
+            print(a[i],a[j])    
+
+
+# In[18]:
+
+
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def i_trees(root1, root2):
+    if root1 is None and root2 is None:
+        return True
+
+    if root1 is None or root2 is None:
+        return False
+
+    if root1.value != root2.value:
+        return False
+
+    return  i_trees(root1.left, root2.left) and   i_trees(root1.right, root2.right)
+tree1 = TreeNode(1)
+tree1.left = TreeNode(2)
+tree1.right = TreeNode(3)
+tree1.left.left=TreeNode(4)
+tree1.left.left.right=TreeNode(6)
+
+tree2 = TreeNode(1)
+tree2.left = TreeNode(2)
+tree2.right = TreeNode(3)
+tree2.left.left=TreeNode(4)
+tree2.left.left.right=TreeNode(8)
+if  i_trees(tree1, tree2):
+    print("The trees are identical.")
+else:
+    print("The trees are not identical.")
+
+
+# In[19]:
+
+
+x=input().split()
+for y in x:
+    if (x.index(y))%2==0:
+        print(y,end=" ")
+    elif (x.index(y))%2==1:
+        y=y[: :-1]
+        print(y,end=" ")
+
+
+# In[ ]:
+
+
+
+
+
+# In[20]:
+
+
+x=[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]
+sum=0
+for i in range(len(x)):
+    for j in range(len(x[0])):
+        if i==3//2 or j==5//2:
+            sum=sum+x[i][j]
+print(sum)
+
+
+# In[21]:
+
+
+t = "ABABCDABCABCDBDCABBABABAABCD"
+substring = "ABCD"
+index = -1
+while True:
+    index = t.find(substring, index+1 )
+    if index == -1:
+        break
+    a_index = t.find("A", index)
+    print(a_index)
+
+
+# In[ ]:
+
+
+no_rows=int(input())
+no_col=int(input())
+row=[]
+mat=[]
+for i in range(no_rows):
+    for j in range(no_col):
+        x=int(input("enter an element for row"))
+        row.append(x)
+    mat.append(row)
+print(mat)
+
+
+# 
+
+# In[35]:
+
+
+t = "ABABCDABCABCDBDCABBABABAABCD"
+substring = "ABCD"
+i = 0
+while i < len(t):
+    if t[i:i+len(substring)] == substring:
+        print(i)        
+    i += 1
+
+
+# In[43]:
+
+
+matrix = [
+    [ 0, 0, 1, 0],
+    [ 1, 1, 1, 1],
+    [0,0,0, 0],
+    [1,1, 0, 0]
+]
+max = 0  
+for i in range(4):
+    current = 0  
+    for element in matrix[i]:
+        if element == 1:
+            current += 1
+            if current> max:
+                max = current
+    if max==4:
+        break             
+print(i+1 )
+
+
+# In[42]:
+
+
+def multiply(x, y):
+    if y == 0:
+        return 0
+    elif y > 0:
+        return x + multiply(x, y - 1)
+    else:  
+        return -multiply(x, -y)
+result = multiply(0, 1)
+print(result)  
+
+
+# In[1]:
+
+
+l1="11011"
+l2="11110"
+s1=[]
+s2=[]
+sum=0
+for x in l1:
+    s1.append(x)
+for y in l2:
+    s2.append(y)
+for i in range(len(s1)):
+        if s1[i]!=s2[i]:
+            if s1[i]==s2[i+1]:
+                s2[i]=s2[i+1]
+                s2[i+1]=s2[i]
+                sum=sum+1
+        if i+1==len(s1)-1:
+            break
+print(sum)
+        
+
+
+# In[16]:
+
+
+k=int(input())
+print(k%10,(k%100)//10,k//100)
+
+
+# In[17]:
+
+
+x={'1':[0,0,0],'2':["a",'b','c'],'3':["d",'e','f'],'4':["g",'h','i'],'5':['j','k','l'],'6':['m','n','0'],'7':['p','q','r'],'8':['s','t','u'],'9':['v','w','z']}
+a, b=map(int,input().split())
+c=str(a)
+d=str(b)
+for i in range(3):
+    for j in range(3):
+        print(x[c][i],x[d][j])
+
+
+# In[39]:
+
+
+class Node:
+    def _init_(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+def print_alternate_levels(root, level_choice):
+    if not root:
+        return
+    queue = []
+    if level_choice == 1:
+        level = 1
+    elif level_choice == 2:
+        level = 0
+    else:
+        print("Invalid level choice")
+        return
+    queue.append((root, level))
+    while queue:
+        node, current_level = queue.pop(0)
+        if current_level % 2 == 0:
+            print(node.val, end=" ")
+        if node.left:
+            queue.append((node.left, current_level + 1))
+        if node.right:
+            queue.append((node.right, current_level + 1))
+root=Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right.left = Node(6)
+root.right.right = Node(7)
+root.left.left.left = Node(8)
+root.left.left.right = Node(9)
+root.left.right.left = Node(10)
+root.left.right.right = Node(11)
+root.right.left.left = Node(12)
+root.right.left.right = Node(13)
+root.right.right.left = Node(14)
+root.right.right.right = Node(15)
+print("Enter 1 for odd levels OR 2 for even levels:")
+level_choice = int(input())
+print("Alternate levels in the binary tree:")
+print_alternate_levels(root, level_choice)
+
+
+# In[1]:
+
+
+def selection_sort(arr):
+    n = len(arr)    
+    for i in range(n):      
+        min_index = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+                arr[i], arr[min_index] = arr[min_index], arr[i]
+my_list = [6, 25, 2, 92, 11]
+selection_sort(my_list)
+print("Sorted list:", my_list)
+
+
+# In[2]:
+
+
+y=[5,4,3,2,1]
+for i in range(len(y)):
+    for j in range(0,(len(y))-i-1):
+        if y[j]>y[j+1]:
+            y[j],y[j+1]=y[j+1],y[j]
+print(y)
+
+
+# In[1]:
+
+
+class Graph(): 
+    def __init__(self, vertices): 
+        self.graph = [[0 for column in range(vertices)]
+                            for row in range(vertices)] 
+        self.V = vertices 
+    def isSafe(self, v, pos, path): 
+        # Check if current vertex and last vertex 
+        # in path are adjacent 
+        if self.graph[ path[pos-1] ][v] == 0: 
+            return False
+
+        # Check if current vertex not already in path 
+        for vertex in path: 
+            if vertex == v: 
+                return False
+
+        return True
+
+    # A recursive utility function to solve 
+    # hamiltonian cycle problem 
+    def hamCycleUtil(self, path, pos): 
+
+        # base case: if all vertices are 
+        # included in the path 
+        if pos == self.V: 
+            # Last vertex must be adjacent to the 
+            # first vertex in path to make a cycle 
+            if self.graph[ path[pos-1] ][ path[0] ] == 1: 
+                return True
+            else: 
+                return False
+
+        # Try different vertices as a next candidate 
+        # in Hamiltonian Cycle. We don't try for 0 as 
+        # we included 0 as starting point in hamCycle() 
+        for v in range(1,self.V): 
+
+            if self.isSafe(v, pos, path) == True: 
+
+                path[pos] = v 
+
+                if self.hamCycleUtil(path, pos+1) == True: 
+                    return True
+
+                # Remove current vertex if it doesn't 
+                # lead to a solution 
+                path[pos] = -1
+
+        return False
+
+    def hamCycle(self): 
+        path = [-1] * self.V 
+        path[0] = 0
+
+        if self.hamCycleUtil(path,1) == False: 
+            print ("Solution does not exist\n")
+            return False
+
+        self.printSolution(path) 
+        return True
+
+    def printSolution(self, path): 
+        print ("Solution Exists: Following",
+                 "is one Hamiltonian Cycle")
+        for vertex in path: 
+            print (vertex, end = " ")
+        print (path[0], "\n")
+
+# Driver Code 
+
+''' Let us create the following graph 
+    (0)--(1)--(2) 
+    |    / \   | 
+    |   /   \  | 
+    |  /     \ | 
+    (3)-------(4) '''
+g1 = Graph(5) 
+g1.graph = [ [0, 1, 0, 1, 0], [1, 0, 1, 1, 1], 
+            [0, 1, 0, 0, 1,],[1, 1, 0, 0, 1], 
+            [0, 1, 1, 1, 0], ] 
+
+# Print the solution 
+g1.hamCycle(); 
+
+''' Let us create the following graph 
+    (0)--(1)--(2) 
+    |    / \   | 
+    |   /   \  | 
+    |  /     \ | 
+    (3)      (4) '''
+g2 = Graph(5) 
+g2.graph = [ [0, 1, 0, 1, 0], [1, 0, 1, 1, 1], 
+        [0, 1, 0, 0, 1,], [1, 1, 0, 0, 0], 
+        [0, 1, 1, 0, 0], ] 
+
+# Print the solution 
+g2.hamCycle(); 
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
